@@ -1,7 +1,12 @@
-const withPWA = require('next-pwa')
-
-module.exports = withPWA({
-  pwa: {
-    dest: 'public'
-  }
+const withPlugins = require('next-compose-plugins')
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
 })
+module.exports = withPlugins([
+  [withBundleAnalyzer({})],
+  [withPWA({
+    pwa: {
+      dest: 'public'
+    }
+  })]
+])
