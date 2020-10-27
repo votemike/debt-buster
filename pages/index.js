@@ -5,60 +5,68 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Debt Buster</title>
+        {/*<link rel="icon" href="/favicon.ico" />*/}
       </Head>
-
+      <div className={styles.quickView}>
+        {/*These things should all get smaller when you scroll*/}
+        {/*This div should be sticky to the top*/}
+        <div>Your Debts (X)</div>
+        <button>Add Debt</button>
+        <div>Total to be paid off (current + interest)</div>
+        <div>Date it will be paid off by</div>
+        <div>Total:Cards £3,500Interest £967Monthly payment £255</div>
+      </div>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Debt Buster
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          Use this app to enter all your current debt and work out the way to pay them off fastest.
         </p>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
+        <div>Loads of content</div>
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
+        <div>Money Advice Service:
+          <a href="https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator" target="_blank" rel="noopener noreferrer">Debt Advice Locator</a>
+          <a href="https://www.moneyadviceservice.org.uk/en/tools/budget-planner" target="_blank" rel="noopener noreferrer">Budget Planner</a>
+          <a href="https://www.moneyadviceservice.org.uk/en/categories/debt-and-borrowing" target="_blank" rel="noopener noreferrer">Debt and Borrowing</a>
+          <a href="https://www.moneyadviceservice.org.uk/en/categories/help-with-loans" target="_blank" rel="noopener noreferrer">Help with loans</a>
+        </div>
+        <div>Money Saving Expert:
+          <a href="https://www.moneysavingexpert.com/loans/debt-help-plan/" target="_blank" rel="noopener noreferrer">Debt Help</a>
+          <a href="https://www.moneysavingexpert.com/eligibility/credit-cards/search/?goal=CC_BALTRANSFERV2" target="_blank" rel="noopener noreferrer">Credit Card Eligibilty Calculator</a>
+        </div>
       </footer>
     </div>
   )
