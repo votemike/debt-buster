@@ -1,0 +1,5 @@
+.formRow {
+    width: 100%; /* Full width */
+    display: flex;
+    justify-content: space-between;
+}

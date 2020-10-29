@@ -8,7 +8,7 @@
 }
 
 .main {
-  margin-top: 5rem;
+  margin-top: 3rem;
   padding: 1rem 0;
   flex: 1;
   display: flex;
@@ -31,12 +31,20 @@
   text-align: center;
 }
 
-.quickView {
+.topBit {
   overflow: hidden;
   background-color: #333;
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
+  padding: 10px;
+  color: white;
+}
+
+.quickView {
+  width: 100%; /* Full width */
+  display: flex;
+  justify-content: space-between;
 }
 
 /*.card {*/
