@@ -2,20 +2,33 @@ import Head from 'next/head'
 import {useState} from 'react';
 import styles from '../styles/Home.module.css'
 import AddDebtForm from "../components/add-debt-form";
+import DebtList from "../components/debt-list";
 
 export default function Home() {
   const [navIsOpen, setNavOpen] = useState(false);
+  const [debts, setDebts] = useState([]);
+  const [monthlyRepayment, setMonthlyRepayment] = useState(0);
 
   function toggleNav() {
     setNavOpen(!navIsOpen);
   }
 
-  const [debts, setDebts] = useState([]);
-
   const addDebtHandler = formState => {
     const debt = {name: formState.name, amount: parseFloat(formState.amount), apr: parseFloat(formState.apr)};
-    setDebts([...debts, debt]);
+    const sortedDebts = [...debts, debt].sort((a, b) => {
+      const sort = b.apr - a.apr;
+      if (sort === 0) {
+        return a.amount - b.amount;
+      }
+
+      return sort;
+    });
+    setDebts(sortedDebts);
     setNavOpen(false);
+  };
+
+  const monthlyRepaymentHandler = event => {
+    setMonthlyRepayment(parseFloat(event.target.value));
   };
 
   return (
@@ -49,11 +62,10 @@ export default function Home() {
           Use this app to enter all your current debt and work out the way to pay them off fastest.
         </p>
 
-        {debts.length > 0 && (<ul>
-          {debts.map((debt, index) => (
-            <li key={debt.name}>{debt.name} - £{debt.amount} - {debt.apr}%</li>
-          ))}
-        </ul>)}
+        <p>How much can you afford to pay towards your debts each month?</p>
+        <p>Monthly Repayments: £<input type='number' step='any' min="0" value={monthlyRepayment} onChange={monthlyRepaymentHandler}/></p>
+
+        {debts.length > 0 && (<DebtList debts={debts}/>)}
         <div>Loads of content</div>
         <div>Loads of content</div>
         <div>Loads of content</div>

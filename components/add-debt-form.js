@@ -10,7 +10,7 @@ class AddDebtForm extends React.Component {
   }
 
   getInitialFormState() {
-    return {name: '', amount: '', apr: ''}; // servicing, 0% balance transfer
+    return {name: '', amount: '', apr: '', minimumMonthlyRepayment: 10}; // servicing, 0% balance transfer, minimum monthly payment %
   }
 
   handleInputChange(event) {
@@ -47,6 +47,11 @@ class AddDebtForm extends React.Component {
             <label>APR</label>
             <input name="apr" value={this.state.apr} onChange={this.handleInputChange}
                    type="number" placeholder="29.9" step="any" min="0" required/>
+          </div>
+          <div className={styles.formRow}>
+            <label>Min Monthly Repayment (£)</label>
+            <input name="minimumMonthlyRepayment" value={this.state.minimumMonthlyRepayment} onChange={this.handleInputChange}
+                   type="number" placeholder="10" step="any" min="0" required/>
           </div>
           <div className={styles.formRow}>
             <button type="submit" className="button is-primary">
