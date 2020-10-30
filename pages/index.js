@@ -14,7 +14,12 @@ export default function Home() {
   }
 
   const addDebtHandler = formState => {
-    const debt = {name: formState.name, amount: parseFloat(formState.amount), apr: parseFloat(formState.apr)};
+    const debt = {
+      name: formState.name,
+      amount: parseFloat(formState.amount),
+      apr: parseFloat(formState.apr),
+      minimumMonthlyRepayment: parseFloat(formState.minimumMonthlyRepayment)
+    };
     const sortedDebts = [...debts, debt].sort((a, b) => {
       const sort = b.apr - a.apr;
       if (sort === 0) {
@@ -23,8 +28,17 @@ export default function Home() {
 
       return sort;
     });
-    setDebts(sortedDebts);
+    setDebts(augmentDebts(sortedDebts));
     setNavOpen(false);
+  };
+
+  const augmentDebts = debts => {
+    //TODO need to take other debts in to account
+    return debts.map((debt) => {
+      const monthlyRate = debt.apr / 100 / 12;
+      debt.payOffMonths = -Math.log(1 - (monthlyRate * debt.amount / debt.minimumMonthlyRepayment)) / Math.log(1 + monthlyRate);
+      return debt;
+    });
   };
 
   const monthlyRepaymentHandler = event => {
@@ -63,7 +77,8 @@ export default function Home() {
         </p>
 
         <p>How much can you afford to pay towards your debts each month?</p>
-        <p>Monthly Repayments: £<input type='number' step='any' min="0" value={monthlyRepayment} onChange={monthlyRepaymentHandler}/></p>
+        <p>Monthly Repayments: £<input type='number' step='any' min="0" value={monthlyRepayment}
+                                       onChange={monthlyRepaymentHandler}/></p>
 
         {debts.length > 0 && (<DebtList debts={debts}/>)}
         <div>Loads of content</div>
@@ -93,20 +108,26 @@ export default function Home() {
         <div>Loads of content</div>
         <div>Loads of content</div>
         <div>Loads of content</div>
-        </main>
+      </main>
 
-        <footer className={styles.footer}>
+      <footer className={styles.footer}>
         <div>Money Advice Service:
-        <a href="https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator" target="_blank" rel="noopener noreferrer">Debt Advice Locator</a>
-        <a href="https://www.moneyadviceservice.org.uk/en/tools/budget-planner" target="_blank" rel="noopener noreferrer">Budget Planner</a>
-        <a href="https://www.moneyadviceservice.org.uk/en/categories/debt-and-borrowing" target="_blank" rel="noopener noreferrer">Debt and Borrowing</a>
-        <a href="https://www.moneyadviceservice.org.uk/en/categories/help-with-loans" target="_blank" rel="noopener noreferrer">Help with loans</a>
+          <a href="https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator" target="_blank"
+             rel="noopener noreferrer">Debt Advice Locator</a>
+          <a href="https://www.moneyadviceservice.org.uk/en/tools/budget-planner" target="_blank"
+             rel="noopener noreferrer">Budget Planner</a>
+          <a href="https://www.moneyadviceservice.org.uk/en/categories/debt-and-borrowing" target="_blank"
+             rel="noopener noreferrer">Debt and Borrowing</a>
+          <a href="https://www.moneyadviceservice.org.uk/en/categories/help-with-loans" target="_blank"
+             rel="noopener noreferrer">Help with loans</a>
         </div>
         <div>Money Saving Expert:
-        <a href="https://www.moneysavingexpert.com/loans/debt-help-plan/" target="_blank" rel="noopener noreferrer">Debt Help</a>
-        <a href="https://www.moneysavingexpert.com/eligibility/credit-cards/search/?goal=CC_BALTRANSFERV2" target="_blank" rel="noopener noreferrer">Credit Card Eligibilty Calculator</a>
+          <a href="https://www.moneysavingexpert.com/loans/debt-help-plan/" target="_blank" rel="noopener noreferrer">Debt
+            Help</a>
+          <a href="https://www.moneysavingexpert.com/eligibility/credit-cards/search/?goal=CC_BALTRANSFERV2"
+             target="_blank" rel="noopener noreferrer">Credit Card Eligibilty Calculator</a>
         </div>
-        </footer>
-        </div>
-        )
-        }
+      </footer>
+    </div>
+  )
+}
